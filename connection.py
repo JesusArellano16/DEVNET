@@ -1,8 +1,15 @@
 from netmiko import ConnectHandler
+import os
+from dotenv import load_dotenv
 
-ipadd = input("Ingresa la IP del RMAC a respaldar: ")
-user = input("Ingresa tu usuario: ")
-pswd = input("Ingresa tu password: ")
+load_dotenv()
+user=os.getenv("USERNAME")
+pswd=os.getenv("PASSWORD")
+
+with open("mgmt_ip_addresses.txt") as file:
+    ipadd = file.read().strip()
+
+
 
 # Se crea un diccionario para el dispositivo a conectar
 cisco_device = {
@@ -14,13 +21,15 @@ cisco_device = {
        'verbose': True         # opcional, default False
        }
 
-# conexión a dispositivo y regresa un objeto asignado a la conexión ssh
-connection = ConnectHandler(**cisco_device)
 
-# envio de comando y se obtiene la salida
-output = connection.send_command('sh version')
-print('\n',output)
+def router_info():
+       # conexión a dispositivo y regresa un objeto asignado a la conexión ssh
+       connection = ConnectHandler(**cisco_device)
 
-# cierre de conexón
-print('\nClosing connection......')
-connection.disconnect()
+       # envio de comando y se obtiene la salida
+       output = connection.send_command('sh version')
+       print('\n',output)
+
+       # cierre de conexón
+       print('\nClosing connection......')
+       connection.disconnect()
