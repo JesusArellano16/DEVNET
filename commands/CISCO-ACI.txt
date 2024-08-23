@@ -1,0 +1,171 @@
+terminal length 0
+!
+#Leaves a respaldar:  ['101', '102', '151', '152']
+
+show controller
+!
+show version
+!
+acidiag fnvread
+!
+show  snmp summary
+!
+show ntp
+!
+cat /proc/net/bonding/bond0
+!
+moquery -d topology/pod-1/node-1/sys/ch/psuslot-5/psu | egrep "operSt|model|descr|dn|ser"
+moquery -d topology/pod-1/node-1/sys/ch/psuslot-6/psu | egrep "operSt|model|descr|dn|ser"
+!
+moquery -d topology/pod-1/node-2/sys/ch/psuslot-5/psu | egrep "operSt|model|descr|dn|ser"
+moquery -d topology/pod-1/node-2/sys/ch/psuslot-6/psu | egrep "operSt|model|descr|dn|ser"
+!
+moquery -d topology/pod-1/node-3/sys/ch/psuslot-5/psu | egrep "operSt|model|descr|dn|ser"
+moquery -d topology/pod-1/node-3/sys/ch/psuslot-6/psu | egrep "operSt|model|descr|dn|ser"
+!
+moquery -c eqptFan -d topology/pod-1/node-1
+moquery -c eqptFan -d topology/pod-1/node-2
+moquery -c eqptFan -d topology/pod-1/node-3
+!
+moquery -c eqptSupC | egrep "^#|^descr|^dn|^ser|^type|^operSt|^rdSt|^vendor"
+!
+moquery -c eqptLC | egrep "^#|^descr|^dn|^ser|^type|^operSt|^rdSt|^vendor"
+!
+moquery -c eqptFt | egrep "^#|^descr|^dn|^model|^operSt|^vendor"
+!
+moquery -c eqptPsu | egrep "^#|^descr|^dn|^fanOpSt|^model|^operSt|^ser|^vendor"
+!
+moquery -c ethpmPhysIf | egrep "^dn|^operSpeed|^operSt |^operStQual |^#"
+!
+show external-l3 bgp tenant mgmt vrf inb 
+!
+show external-l3 ospf detail 
+!
+fabric 101,102,151,152 show env power
+!
+fabric 101,102,151,152 show interface brief | egrep -v "lan|unnel|down|Lo"
+!
+show endpoint
+!
+#########################TCAM######################################
+
+
+moquery -c eqptcapacityPolUsage5min | egrep "#|dn|Cum"
+
+
+######################CONFIG DEL LEAF 101##########################
+!
+########TCAM
+!
+moquery -c eqptcapacityPolUsage5min -f 'eqptcapacity.PolUsage5min.dn=="topology/pod-1/node-101/sys/eqptcapacity/CDeqptcapacityPolUsage5min"' | grep Cum
+!
+moquery -c infraRsAccBaseGrp -f 'infra.RsAccBaseGrp.tDn*"101"' | egrep "#|dn|tDn"
+!
+moquery -c infraRsAccBaseGrp -f 'infra.RsAccBaseGrp.tDn*"101"' | egrep "tDn" | sort
+!
+moquery -c fvIfConn | grep dn | grep "node-101" | sort
+!
+moquery -c fvIfConn -f 'fv.IfConn.dn*"node-101"' | egrep -w "^dn|^encap|^resImedcy|^mode|^#"
+!
+moquery -c fvRsPathAtt | grep dn | egrep "\-101|101\-"
+!
+fabric 101 show vpc extended
+!
+fabric 101 show port-channel extended
+!
+fabric 101 show interface brief | grep -v Tunnel
+!
+fabric 101 show endpoint 
+!
+show events last-days 1 leaf 101
+!
+show faults last-days 1 history leaf 101
+######################CONFIG DEL LEAF 102##########################
+!
+########TCAM
+!
+moquery -c eqptcapacityPolUsage5min -f 'eqptcapacity.PolUsage5min.dn=="topology/pod-1/node-102/sys/eqptcapacity/CDeqptcapacityPolUsage5min"' | grep Cum
+!
+moquery -c infraRsAccBaseGrp -f 'infra.RsAccBaseGrp.tDn*"102"' | egrep "#|dn|tDn"
+!
+moquery -c infraRsAccBaseGrp -f 'infra.RsAccBaseGrp.tDn*"102"' | egrep "tDn" | sort
+!
+moquery -c fvIfConn | grep dn | grep "node-102" | sort
+!
+moquery -c fvIfConn -f 'fv.IfConn.dn*"node-102"' | egrep -w "^dn|^encap|^resImedcy|^mode|^#"
+!
+moquery -c fvRsPathAtt | grep dn | egrep "\-102|102\-"
+!
+fabric 102 show vpc extended
+!
+fabric 102 show port-channel extended
+!
+fabric 102 show interface brief | grep -v Tunnel
+!
+fabric 102 show endpoint 
+!
+show events last-days 1 leaf 102
+!
+show faults last-days 1 history leaf 102
+######################CONFIG DEL LEAF 151##########################
+!
+########TCAM
+!
+moquery -c eqptcapacityPolUsage5min -f 'eqptcapacity.PolUsage5min.dn=="topology/pod-1/node-151/sys/eqptcapacity/CDeqptcapacityPolUsage5min"' | grep Cum
+!
+moquery -c infraRsAccBaseGrp -f 'infra.RsAccBaseGrp.tDn*"151"' | egrep "#|dn|tDn"
+!
+moquery -c infraRsAccBaseGrp -f 'infra.RsAccBaseGrp.tDn*"151"' | egrep "tDn" | sort
+!
+moquery -c fvIfConn | grep dn | grep "node-151" | sort
+!
+moquery -c fvIfConn -f 'fv.IfConn.dn*"node-151"' | egrep -w "^dn|^encap|^resImedcy|^mode|^#"
+!
+moquery -c fvRsPathAtt | grep dn | egrep "\-151|151\-"
+!
+fabric 151 show vpc extended
+!
+fabric 151 show port-channel extended
+!
+fabric 151 show interface brief | grep -v Tunnel
+!
+fabric 151 show endpoint 
+!
+show events last-days 1 leaf 151
+!
+show faults last-days 1 history leaf 151
+######################CONFIG DEL LEAF 152##########################
+!
+########TCAM
+!
+moquery -c eqptcapacityPolUsage5min -f 'eqptcapacity.PolUsage5min.dn=="topology/pod-1/node-152/sys/eqptcapacity/CDeqptcapacityPolUsage5min"' | grep Cum
+!
+moquery -c infraRsAccBaseGrp -f 'infra.RsAccBaseGrp.tDn*"152"' | egrep "#|dn|tDn"
+!
+moquery -c infraRsAccBaseGrp -f 'infra.RsAccBaseGrp.tDn*"152"' | egrep "tDn" | sort
+!
+moquery -c fvIfConn | grep dn | grep "node-152" | sort
+!
+moquery -c fvIfConn -f 'fv.IfConn.dn*"node-152"' | egrep -w "^dn|^encap|^resImedcy|^mode|^#"
+!
+moquery -c fvRsPathAtt | grep dn | egrep "\-152|152\-"
+!
+fabric 152 show vpc extended
+!
+fabric 152 show port-channel extended
+!
+fabric 152 show interface brief | grep -v Tunnel
+!
+fabric 152 show endpoint 
+!
+show events last-days 1 leaf 152
+!
+show faults last-days 1 history leaf 152
+##################################################################
+!
+moquery -c fvCEp | egrep "^dn|^fabricPathDn|^#"
+!
+moquery -c fvIp | egrep "^dn|^fabricPathDn|^#"
+!
+moquery -c ethpmPhysIf | egrep "^dn|^operSpeed|^operSt |^operStQual |^#"
+!

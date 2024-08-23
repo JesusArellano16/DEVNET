@@ -1,0 +1,76 @@
+terminal length 0
+show run
+show version brief
+show version
+show ssh 
+show ssh session details
+show inventory
+show redundancy
+admin show run
+admin show inventory
+admin show install committed summary
+admin show install active summary
+admin show install inactive summary
+admin show hw-module fpd location all
+admin show platform
+admin show redundancy
+admin show environment all location all
+admin show environment fans
+admin show environment power-supply
+admin show environment leds
+admin show hw-module fpd location all
+admin show license status 
+admin show lic all
+admin show lic
+admin show lic udi
+show hsrp
+show vrrp
+show bundle brief 
+show bundle
+show bfd session
+show bgp sum
+show bgp vrf all summary
+show bgp vrf all ipv6 unicast summary
+show bgp vpnv4 unicast summary 
+show ipv6 neighbors
+show cdp neighbor
+show cdp neighbor det
+show interfaces
+show interface brief
+show ip vrf all int bri
+show ip vrf all int bri | i Up
+show cdp nei
+show cdp nei det
+show policy-map interface all
+show ospf database
+show ospf neighbor
+show ospf interface brief
+show ospf border-routers
+show ospf vrf all neighbor
+show ospf vrf all database
+show ospf vrf all interface brief
+show ospf vrf all neighbor det
+show ospf vrf all border-routers
+show run mpls
+show mpls ldp neighbor
+show mpls ldp interface
+show mpls ldp discovery
+show mpls ldp forwarding
+show l2vpn bridge-domain brief 
+show l2vpn bridge-domain
+show l2vpn xconnect
+show atm pvc
+show clock
+show route vrf all ospf
+show route vrf all
+show bgp vrf all 
+show cef summary location all
+show cef detail
+show configuration commit list
+show log
+show arp
+show arp vrf all
+show arp | e "CPU|--------|Address" | utility uniq | utility sort -t . -k 1,1n -k2,2n -k 3,3n -k 4,4n
+show arp vrf all | e "CPU|--------|Address" | utility uniq | utility sort -t . -k 1,1n -k2,2n -k 3,3n -k 4,4n
+term leng 35 
+term monitor

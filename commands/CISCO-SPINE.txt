@@ -1,0 +1,23 @@
+vsh
+terminal length 0
+show processes memory
+show processes memory shared detail
+show processes cpu history
+exit
+terminal length 0
+show environment power 
+show environment fan
+show environment temperature
+show inventory
+show version
+show system resources 
+show cdp neighbors 
+show lldp neighbors 
+show ip ospf neighbors vrf all
+show isis adjacency detail vrf all
+show interface brief
+show ip interface brief
+show interface
+show bgp l2vpn evpn summary vrf all
+show bgp vpnv4 unicast summary vrf all
+ 

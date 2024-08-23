@@ -1,0 +1,28 @@
+terminal length 0
+moquery -c eqptcapacityPolUsage5min | egrep "#|dn|Cum"
+vsh
+term len 0
+show processes memory
+show processes memory shared detail
+show processes cpu history
+exit
+show environment power 
+show environment fan
+show environment temperature
+show inventory
+show version
+show system resources 
+show cdp neighbors 
+show lldp neighbors 
+show ip ospf neighbors vrf all
+show isis adjacency detail vrf all
+show ip bgp summary vrf all
+show bgp vpnv4 unicast summary vrf all
+show interface brief
+show ip interface brief
+show interface
+show mac address-table
+show endpoint
+show vrf all
+show ip route vrf all
+ 
