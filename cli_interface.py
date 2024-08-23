@@ -1,5 +1,6 @@
 import click
 import connection
+import os_detection
 
 @click.group()
 def cli():
@@ -14,6 +15,7 @@ def r9():
 def urraza():
     "Respaldando Central Urraza R9"
     click.echo("\nRespaldando Central Urraza R9\n")
+    os_detection.os_det()
     connection.router_info()
 
 cli()

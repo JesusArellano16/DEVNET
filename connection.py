@@ -5,14 +5,14 @@ from dotenv import load_dotenv
 from datetime import datetime
 
 load_dotenv()
-user=os.getenv("USERNAME")
-pswd=os.getenv("PASSWORD")
+user=os.getenv("USER")
+pswd=os.getenv("PASS")
 
 
 now = datetime.now()
 dt_string = now.strftime("%d%m%Y_%H-%M-%S")
 
-with open ("sitios/urraza.csv", "r") as filecsv:
+with open ("src/sitios/urraza.csv", "r") as filecsv:
     data = csv.reader(filecsv)
     next(data)
     IPaddxr = []
@@ -56,7 +56,7 @@ def router_info():
                             connection = ConnectHandler(**device)
                             print('Entering the device: '+ device)
 
-                            with open('commands\CISCO-XR.txt') as f:
+                            with open('src/commands/CISCO-XR.txt') as f:
                                    devices = f.read().splitlines()
         
                             outputline=""
@@ -73,7 +73,7 @@ def router_info():
                             # getting the current date (year-month-day)
 
                             # creating the backup filename (hostname_date_backup.txt)
-                            filename = f'{hostname}_{dt_string}_backup.txt'
+                            filename = f'prev_{hostname}_{dt_string}_backup.txt'
 
                             # writing the backup to the file
                             with open(filename, 'w') as backup:
