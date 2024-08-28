@@ -1,58 +1,28 @@
-import os
-import csv
 from netmiko import ConnectHandler
-from dotenv import load_dotenv
 from datetime import datetime
-
-load_dotenv()
-user=os.getenv("USER")
-pswd=os.getenv("PASS")
-
 
 now = datetime.now()
 dt_string = now.strftime("%d%m%Y_%H-%M-%S")
 
-with open ("src/sitios/urraza.csv", "r") as filecsv:
-    data = csv.reader(filecsv)
-    next(data)
-    IPaddxr = []
-    IPaddlf = []
-    IPaddsp = []
-    IPaddapic = []
-    for item in data:
-       IPaddxr.append(item[0])    
-       IPaddlf.append(item[1])
-       IPaddsp.append(item[2])
-       IPaddapic.append(item[3])
+device_list = []
 
-IPaddxr = list(filter(None,IPaddxr))
-IPaddlf = list(filter(None,IPaddlf))
-IPaddsp = list(filter(None,IPaddsp))
-IPaddapic = list(filter(None,IPaddapic))
-
-
-devicexr_list = []
-devicelf_list = []
-devicesp_list = []
-deviceapic_list = []
-
-def router_info():
-       for ip in IPaddxr:
+def router_info(user, pswd, IPadd, device):
+       for ip in IPadd:
               if(ip==""):
                      break
               else:
-                     ciscoxr_device = {
-                            'device_type': 'cisco_xr',
+                     cisco_device = {
+                            'device_type': device,
                             'host': ip,
                             'username': user,
                             'password': pswd,
                             'port': 22,
                             'verbose': True
                             }
-                     devicexr_list.append(ciscoxr_device)
-       print(devicexr_list)
+                     device_list.append(cisco_device)
+       print(device_list)
 """
-                     for device in devicexr_list:
+                     for device in device_list:
                             connection = ConnectHandler(**device)
                             print('Entering the device: '+ device)
 
