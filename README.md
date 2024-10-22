@@ -7,8 +7,8 @@ For MAC users
     - "python -m venv venv"
     
 Create a .env file with the following structure
-    USR = "user"
-    PSWD = "password"
+    USERS = "user"
+    PSWDS = "password"
 
 Modify the mgmt_ip_addresses.txt with the ip address of the router you need (only one ip)
 

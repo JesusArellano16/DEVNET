@@ -12,17 +12,10 @@ def cli():
     pass
 
 @cli.group()
-def prev_backup():
+def backup():
     "Respaldo previo"
 
-@prev_backup.group()
-def RMAC():
-    "Respaldo RMAC"
-    global device_type, device
-    device_type = 'cisco_xr'
-    device = "RMAC"
-
-@RMAC.group()
+@backup.group()
 def r9():
     "Respaldo Central R9"
 
@@ -34,6 +27,7 @@ def urraza():
     user, pswd = variables.amb_var()
     IPadd = ips_loc.get_ips("urraza", device)
     connection.router_info(user, pswd, IPadd, device_type)
+
 @r9.command()
 def sotelo():
     "Respaldando Central SOTELO R9"
@@ -43,5 +37,14 @@ def sotelo():
     IPadd = ips_loc.get_ips("sotelo", device)
     connection.router_info(user, pswd, IPadd, device_type)
 
+@r9.command()
+def maqueta():
+    "Respaldando Maqueta Python"
+    click.echo("\nRespaldando Maqueta Python\n")
+    #os_detection.os_det()
+    user, pswd = variables.amb_var()
+    ciscoos, device_type, IPadd = ips_loc.get_ips("maqueta")
+    connection.router_info(user, pswd, IPadd, device_type, ciscoos)
 
-cli()
+if __name__ == '__main__':
+    cli()
