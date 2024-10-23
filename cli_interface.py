@@ -1,5 +1,4 @@
 import click
-import connection
 import os_detection
 import variables
 import ips_loc
@@ -23,19 +22,17 @@ def r9():
 def urraza():
     "Respaldando Central Urraza R9"
     click.echo("\nRespaldando Central Urraza R9\n")
-    os_detection.os_det()
+    #os_detection.os_det()
     user, pswd = variables.amb_var()
-    IPadd = ips_loc.get_ips("urraza", device)
-    connection.router_info(user, pswd, IPadd, device_type)
+    ips_loc.get_ips(user, pswd, "urraza")
 
 @r9.command()
 def sotelo():
     "Respaldando Central SOTELO R9"
     click.echo("\nRespaldando Central SOTELO R9\n")
-    os_detection.os_det()
+    #os_detection.os_det()
     user, pswd = variables.amb_var()
-    IPadd = ips_loc.get_ips("sotelo", device)
-    connection.router_info(user, pswd, IPadd, device_type)
+    ips_loc.get_ips(user, pswd, "sotelo")
 
 @r9.command()
 def maqueta():
@@ -43,8 +40,7 @@ def maqueta():
     click.echo("\nRespaldando Maqueta Python\n")
     #os_detection.os_det()
     user, pswd = variables.amb_var()
-    ciscoos, device_type, IPadd = ips_loc.get_ips("maqueta")
-    connection.router_info(user, pswd, IPadd, device_type, ciscoos)
+    ips_loc.get_ips(user, pswd, "maqueta")
 
 if __name__ == '__main__':
     cli()
