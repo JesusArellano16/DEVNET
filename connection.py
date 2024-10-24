@@ -31,7 +31,7 @@ def router_info(user, pswd, IPadd, device, ciscoos,beg_prompt=0,fin_prompt=-1):
                      output = connection.send_command(cmdline,read_timeout=120)
                      outputline = (outputline + '\n[' + cmdline + ']:\n' +output)
                      print(cmdline)
-              print(outputline)
+              #print(outputline)
 
               # creating the backup filename (hostname_date_backup.txt)
               prompt = connection.find_prompt()
