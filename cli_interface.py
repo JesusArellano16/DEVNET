@@ -1,7 +1,7 @@
 import click
 import os_detection
 import variables
-import ips_loc
+import ips_backup
 
 device_type = ''
 device = ''
@@ -24,7 +24,7 @@ def urraza():
     click.echo("\nRespaldando Central Urraza R9\n")
     #os_detection.os_det()
     user, pswd = variables.amb_var()
-    ips_loc.get_ips(user, pswd, "urraza")
+    ips_backup.get_ips(user, pswd, "urraza")
 
 @r9.command()
 def sotelo():
@@ -32,7 +32,7 @@ def sotelo():
     click.echo("\nRespaldando Central SOTELO R9\n")
     #os_detection.os_det()
     user, pswd = variables.amb_var()
-    ips_loc.get_ips(user, pswd, "sotelo")
+    ips_backup.get_ips(user, pswd, "sotelo")
 
 @r9.command()
 def maqueta():
@@ -40,7 +40,7 @@ def maqueta():
     click.echo("\nRespaldando Maqueta Python\n")
     #os_detection.os_det()
     user, pswd = variables.amb_var()
-    ips_loc.get_ips(user, pswd, "maqueta")
+    ips_backup.get_ips(user, pswd, "maqueta")
 
 if __name__ == '__main__':
     cli()

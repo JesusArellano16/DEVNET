@@ -2,8 +2,8 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-user=os.getenv("USERS")
-pswd=os.getenv("PSWDS")
+user=os.getenv("USER")
+pswd=os.getenv("PSWD")
 
 def amb_var():
     return user,pswd
