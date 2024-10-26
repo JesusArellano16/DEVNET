@@ -1,8 +1,7 @@
 import click
-import connection
 import os_detection
 import variables
-import ips_loc
+import ips_backup
 
 device_type = ''
 device = ''
@@ -12,17 +11,10 @@ def cli():
     pass
 
 @cli.group()
-def prev_backup():
+def backup():
     "Respaldo previo"
 
-@prev_backup.group()
-def RMAC():
-    "Respaldo RMAC"
-    global device_type, device
-    device_type = 'cisco_xr'
-    device = "RMAC"
-
-@RMAC.group()
+@backup.group()
 def r9():
     "Respaldo Central R9"
 
@@ -30,18 +22,25 @@ def r9():
 def urraza():
     "Respaldando Central Urraza R9"
     click.echo("\nRespaldando Central Urraza R9\n")
-    os_detection.os_det()
+    #os_detection.os_det()
     user, pswd = variables.amb_var()
-    IPadd = ips_loc.get_ips("urraza", device)
-    connection.router_info(user, pswd, IPadd, device_type)
+    ips_backup.get_ips(user, pswd, "urraza")
+
 @r9.command()
 def sotelo():
     "Respaldando Central SOTELO R9"
     click.echo("\nRespaldando Central SOTELO R9\n")
-    os_detection.os_det()
+    #os_detection.os_det()
     user, pswd = variables.amb_var()
-    IPadd = ips_loc.get_ips("sotelo", device)
-    connection.router_info(user, pswd, IPadd, device_type)
+    ips_backup.get_ips(user, pswd, "sotelo")
 
+@r9.command()
+def maqueta():
+    "Respaldando Maqueta Python"
+    click.echo("\nRespaldando Maqueta Python\n")
+    #os_detection.os_det()
+    user, pswd = variables.amb_var()
+    ips_backup.get_ips(user, pswd, "maqueta")
 
-cli()
+if __name__ == '__main__':
+    cli()
